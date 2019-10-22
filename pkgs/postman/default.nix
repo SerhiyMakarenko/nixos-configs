@@ -24,35 +24,35 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = [
-    stdenv.cc.cc.lib
+    alsaLib
     atk
     at-spi2-atk
-    alsaLib
     cairo
     cups
     dbus
     expat
+    fontconfig
+    freetype
     gdk-pixbuf
     glib
     gtk3
-    freetype
-    fontconfig
-    nss
     nspr
+    nss
     pango
+    stdenv.cc.cc.lib
     udev
     xlibs.libX11
     xlibs.libxcb
-    xlibs.libXi
+    xlibs.libXcomposite
     xlibs.libXcursor
     xlibs.libXdamage
-    xlibs.libXrandr
-    xlibs.libXcomposite
     xlibs.libXext
     xlibs.libXfixes
+    xlibs.libXi
+    xlibs.libXrandr
     xlibs.libXrender
-    xlibs.libXtst
     xlibs.libXScrnSaver
+    xlibs.libXtst
   ];
 
   nativeBuildInputs = [ wrapGAppsHook ];

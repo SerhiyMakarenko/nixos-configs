@@ -7,6 +7,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./home/default.nix
   ];
 
   boot = {
@@ -59,61 +60,64 @@ in
       "${pkgs.fish}/bin/fish"
     ];
     systemPackages = with pkgs; [
-      unstable._1password
       _8-bit-backgrounds
-      tmux
-      vim
-      htop
-      git
-      fish
-      google-chrome
-      bookworm
-      unstable.sublime3
-      sublime-merge
-      unstable.jetbrains.pycharm-community
-      spotify
-      pciutils
-      unstable.tdesktop
-      slack-dark
-      skypeforlinux
-      fondo
-      plymouth
-      python3WithPkgs
-      postman
-      unstable.adapta-gtk-theme
-      papirus-icon-theme
       adapta-backgrounds
-      libinput
-      libinput-gestures
+      bookworm
+      fish
+      fondo
       gestures
-      wmctrl
-      xdotool
-      lightdm_gtk_greeter
+      git
       gnome3.dconf
+      gnome3.dconf-editor
       gnome3.gnome-tweaks
+      gnomeExtensions.clipboard-indicator
       gnomeExtensions.mediaplayer
       gnomeExtensions.sound-output-device-chooser
       gnomeExtensions.taskwhisperer
-      gnomeExtensions.clipboard-indicator
+      google-chrome
+      gthumb
+      home-manager
+      htop
+      libinput
+      libinput-gestures
+      lightdm_gtk_greeter
+      papirus-icon-theme
+      pciutils
+      plymouth
+      postman
+      python3WithPkgs
+      skypeforlinux
+      slack-dark
+      spotify
+      sublime-merge
+      tmux
+      unstable._1password
+      unstable.adapta-gtk-theme
+      unstable.jetbrains.pycharm-community
+      unstable.sublime3
+      unstable.tdesktop
+      vim
+      wmctrl
+      xdotool
     ];
     gnome3.excludePackages = [
-      pkgs.gnome3.simple-scan
-      pkgs.gnome3.geary
       pkgs.gnome3.cheese
-      pkgs.gnome3.gnome-music
-      pkgs.gnome3.gnome-maps
-      pkgs.gnome3.gnome-software
       pkgs.gnome3.epiphany
+      pkgs.gnome3.geary
+      pkgs.gnome3.gnome-maps
+      pkgs.gnome3.gnome-music
+      pkgs.gnome3.gnome-software
+      pkgs.gnome3.simple-scan
     ];
   };
 
   fonts.fonts = with pkgs; [
     corefonts
+    font-awesome
+    material-design-icons
+    overpass
     roboto
     roboto-mono
-    material-design-icons
-    font-awesome
-    overpass
   ];
 
   networking = {
@@ -184,11 +188,6 @@ in
           "wheel"
           "input"
         ];
-      };
-    };
-
-    extraUsers = {
-      serhiy_makarenko = {   
         shell = pkgs.fish;
       };
       root = {   

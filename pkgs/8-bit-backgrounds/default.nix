@@ -11,7 +11,12 @@ stdenv.mkDerivation rec {
     sha256 = "19lwsy95hm0ybch836mz5hhrpk8sr9r1i37f1dmx1fx5z1mpwcdq";
   };
 
-  nativeBuildInputs = [ meson ninja pkgconfig glib ];
+  nativeBuildInputs = [
+    meson
+    ninja
+    pkgconfig
+    glib
+  ];
 
   meta = with stdenv.lib; {
     description = "A 8-bit wallpaper collection for GNOME";
