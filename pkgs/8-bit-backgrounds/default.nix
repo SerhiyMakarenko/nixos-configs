@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
     owner = "SerhiyMakarenko";
     repo = "8-bit-backgrounds";
     rev = version;
-    sha256 = "1k9rp1srl781kmg4wn7wcna3nrqy512pmbc1l2jw791dl9f0sb4a";
+    sha256 = "19lwsy95hm0ybch836mz5hhrpk8sr9r1i37f1dmx1fx5z1mpwcdq";
   };
 
   nativeBuildInputs = [ meson ninja pkgconfig glib ];

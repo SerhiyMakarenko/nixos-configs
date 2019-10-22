@@ -49,9 +49,9 @@ in
   };
   
   programs = {
-  	fish = {
-  	  enable = true;
-  	};
+    fish = {
+      enable = true;
+    };
   };
 
   environment = {
@@ -117,9 +117,9 @@ in
   ];
 
   networking = {
-  	networkmanager = {
-  	  enable = true;
-  	 };
+    networkmanager = {
+      enable = true;
+     };
     hostName = "hp-elitebook-840-5g-serhiya-makarenka";
   };
 
@@ -136,9 +136,9 @@ in
   };
 
   services = {
-  	openssh = {
-  	  enable = true;
-  	};
+    openssh = {
+      enable = true;
+    };
 
     xserver = {
       enable = true;
@@ -176,8 +176,8 @@ in
   };
 
   users = {
-  	users = {
-  	  serhiy_makarenko = {
+    users = {
+      serhiy_makarenko = {
         isNormalUser = true;
         description = "Serhiy Makarenko";
         extraGroups = [
