@@ -142,6 +142,7 @@ in
   services = {
     openssh = {
       enable = true;
+      permitRootLogin = "yes";
     };
 
     xserver = {

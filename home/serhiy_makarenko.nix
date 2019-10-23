@@ -162,17 +162,18 @@
         '';
         promptInit = ''
           function fish_greeting
-            echo -----------------------------------------------------------------
+            set -l wireless (ls /sys/class/net/ | awk '/[w]l/{print}')
+            set -l wired (ls /sys/class/net/ | awk '/[e]n/{print}')
             echo Hostname is (set_color green)(hostname)(set_color normal)
             echo HP EliteBook 840 G5 running (set_color green)NixOS (nixos-version)(set_color normal)
             echo You logged in as (set_color green)(whoami)(set_color normal)
-            if [ (ip addr show wlp1s0 | awk 'FNR == 1 {print $9}') = "UP" ]
-              echo Wi-Fi connection status: IP is (set_color green)(ip addr show wlp1s0 | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
+            if [ (ip addr show $wireless | awk 'FNR == 1 {print $9}') = "UP" ]
+              echo Wi-Fi connection status: IP is (set_color green)(ip addr show $wireless | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
             else
               echo Wi-Fi connection status: (set_color red)not connected(set_color normal)
             end
-            if [ (ip addr show enp0s31f6 | awk 'FNR == 1 {print $9}') = "UP" ]
-              echo Ethernet connection status: IP  is (set_color green)(ip addr show enp0s31f6 | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
+            if [ (ip addr show $wired | awk 'FNR == 1 {print $9}') = "UP" ]
+              echo Ethernet connection status: IP  is (set_color green)(ip addr show $wired | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
             else
               echo Ethernet connection status: (set_color red)not connected(set_color normal)
             end
@@ -254,7 +255,6 @@
           end
           function user_prompt
             set -l color_cwd
-            set -l HOSTNAME (hostname)
             switch $USER
             case root toor
               if set -q fish_color_cwd_root
