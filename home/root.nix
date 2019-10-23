@@ -1,6 +1,16 @@
 {
   home-manager.users.root = {
   	programs = {
+      ssh = {
+        enable = true;
+        matchBlocks = {
+        "github.com" = {
+            hostname = "github.com";
+            user = "git";
+            identityFile = "~/.ssh/rsa/SM.Github.rsa";
+          };
+        };
+      };
       git = {
       	enable = true;
         userName = "Serhiy Makarenko";
