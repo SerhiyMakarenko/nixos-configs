@@ -8,7 +8,7 @@ in
 {
   imports = [
     "${home-manager}/nixos"
-    ./serhiy_makarenko.nix
-    ./root.nix
+    ./serhiy_makarenko/default.nix
+    ./root/default.nix
   ];
 }
