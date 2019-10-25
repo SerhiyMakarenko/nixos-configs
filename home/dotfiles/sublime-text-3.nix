@@ -1,4 +1,4 @@
-{ homedir, }:
+{ homedir, username, }:
 
 {
   text = let

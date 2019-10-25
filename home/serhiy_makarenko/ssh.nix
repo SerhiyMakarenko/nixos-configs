@@ -1,6 +1,6 @@
 {
-	enable = true;
-	matchBlocks = {
+  enable = true;
+  matchBlocks = {
     "srv1.makarenko.home" = {
       hostname = "srv1.makarenko.home";
       user = "serhiy_makarenko";
@@ -81,5 +81,5 @@
       user = "git";
       identityFile = "~/.ssh/rsa/SM.Gitlub.rsa";
     };
-	};
+  };
 }

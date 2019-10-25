@@ -1,7 +1,7 @@
 {
   enable = true;
   matchBlocks = {
-  "github.com" = {
+    "github.com" = {
       hostname = "github.com";
       user = "git";
       identityFile = "~/.ssh/rsa/SM.Github.rsa";

@@ -1,6 +1,10 @@
+let
+  username = "serhiy_makarenko";
+in
 {
-  home-manager.users.serhiy_makarenko = ((import ./dotfiles/default.nix) {
-    homedir = "/home/serhiy_makarenko";
+  home-manager.users.${username} = ((import ../dotfiles/default.nix) {
+    homedir = "/home/${username}";
+    username = "${username}";
     }) // {
     programs = {
       ssh = import ./ssh.nix;
