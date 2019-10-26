@@ -1,8 +1,5 @@
 {
   enable = true;
-  shellAliases = {
-    ll = "ls -lah $argv";
-  };
   shellInit = ''
     set segment_separator \u258C
     set -g current_bg 000
@@ -134,8 +131,8 @@
     end
     function fish_prompt
       user_prompt
-      if [ -d .git ]
-        type -q git; and prompt_git
+      if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        prompt_git
         prompt_finish
       end
       user_suffix
