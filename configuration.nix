@@ -44,7 +44,7 @@ in
       _8-bit-backgrounds = import ./pkgs/8-bit-backgrounds/default.nix;
       gestures = import ./pkgs/gestures/default.nix;
       libinput-gestures = import ./pkgs/libinput-gestures/default.nix;
-      python3WithPkgs = import ./pkgs/python3/default.nix;
+      # python3WithPkgs = import ./pkgs/python3/default.nix;
       postman = import ./pkgs/postman/default.nix;
     };
   };
@@ -63,6 +63,7 @@ in
       _8-bit-backgrounds
       adapta-backgrounds
       bookworm
+      feedreader
       fish
       fondo
       gestures
@@ -78,6 +79,8 @@ in
       gthumb
       home-manager
       htop
+      kubectl
+      kubernetes-helm
       libinput
       libinput-gestures
       lightdm_gtk_greeter
@@ -85,7 +88,7 @@ in
       pciutils
       plymouth
       postman
-      python3WithPkgs
+      # python3WithPkgs
       skypeforlinux
       slack-dark
       spotify
@@ -143,6 +146,21 @@ in
     openssh = {
       enable = true;
       permitRootLogin = "yes";
+    };
+
+    kubernetes = {
+      easyCerts = true;
+      kubelet.extraOpts = "--fail-swap-on=false";
+      masterAddress = "hp-elitebook-840-5g-serhiya-makarenka";
+      roles = [ "master" "node" ];
+      # addons = {
+      #   dashboard = {
+      #     enable = true;
+      #     extraArgs = [
+      #       "--enable-skip-login"
+      #     ];
+      #   };
+      # };
     };
 
     xserver = {
