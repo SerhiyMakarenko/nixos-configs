@@ -14,26 +14,29 @@
   '';
   promptInit = ''
     function fish_greeting
-      set -l wireless (ls /sys/class/net/ | awk '/[w]l/{print}')
-      set -l wired (ls /sys/class/net/ | awk '/[e]n/{print}')
-      echo Hostname is (set_color green)(hostname)(set_color normal)
-      echo HP EliteBook 840 G5 running (set_color green)NixOS (nixos-version)(set_color normal)
-      echo You logged in as (set_color green)(whoami)(set_color normal)
-      if [ (ip addr show $wireless | awk 'FNR == 1 {print $9}') = "UP" ]
-        echo Wi-Fi connection status: IP is (set_color green)(ip addr show $wireless | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
+      if test -n "$IN_NIX_SHELL"
       else
-        echo Wi-Fi connection status: (set_color red)not connected(set_color normal)
-      end
-      if [ (ip addr show $wired | awk 'FNR == 1 {print $9}') = "UP" ]
-        echo Ethernet connection status: IP  is (set_color green)(ip addr show $wired | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
-      else
-        echo Ethernet connection status: (set_color red)not connected(set_color normal)
-      end
-      echo -----------------------------------------------------------------
-      uptime
-      echo -----------------------------------------------------------------
-      who -aH
-      echo -----------------------------------------------------------------
+        set -l wireless (ls /sys/class/net/ | awk '/[w]l/{print}')
+        set -l wired (ls /sys/class/net/ | awk '/[e]n/{print}')
+        echo Hostname is (set_color green)(hostname)(set_color normal)
+        echo HP EliteBook 840 G5 running (set_color green)NixOS (nixos-version)(set_color normal)
+        echo You logged in as (set_color green)(whoami)(set_color normal)
+        if [ (ip addr show $wireless | awk 'FNR == 1 {print $9}') = "UP" ]
+          echo Wi-Fi connection status: IP is (set_color green)(ip addr show $wireless | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
+        else
+          echo Wi-Fi connection status: (set_color red)not connected(set_color normal)
+        end
+        if [ (ip addr show $wired | awk 'FNR == 1 {print $9}') = "UP" ]
+          echo Ethernet connection status: IP  is (set_color green)(ip addr show $wired | awk 'FNR == 3 {print $2}' | cut -d '/' -f1)(set_color normal)
+        else
+          echo Ethernet connection status: (set_color red)not connected(set_color normal)
+        end
+        echo -----------------------------------------------------------------
+        uptime
+        echo -----------------------------------------------------------------
+        who -aH
+        echo -----------------------------------------------------------------
+    end
     end
     function prompt_segment -d "Function to draw a segment"
       set -l bg
@@ -117,6 +120,9 @@
       case '*'
         set color_cwd $fish_color_cwd
       end
+      if test -n "$IN_NIX_SHELL"
+        echo -n (set_color $color_cwd)"<nix-shell> "(set_color normal)
+      end
       echo -n -s [(set_color $color_cwd)(date "+%H:%M")(set_color normal)] ' ' "$USER" ' ' [(set_color $color_cwd) "$PWD" (set_color normal)] ' '
     end
     function user_suffix
@@ -131,9 +137,11 @@
     end
     function fish_prompt
       user_prompt
-      if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
-        prompt_git
-        prompt_finish
+      if test -z "$IN_NIX_SHELL"
+        if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
+          prompt_git
+          prompt_finish
+        end
       end
       user_suffix
     end
