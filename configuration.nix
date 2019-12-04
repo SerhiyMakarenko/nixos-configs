@@ -79,6 +79,7 @@ in
       gthumb
       home-manager
       htop
+      jq
       kubectl
       kubernetes-helm
       libinput
