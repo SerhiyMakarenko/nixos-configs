@@ -2,11 +2,11 @@ with import <nixpkgs> { config.allowUnfree = true; };
 
 stdenv.mkDerivation rec {
   pname = "postman";
-  version = "7.10.0";
+  version = "7.13.0";
 
   src = fetchurl {
     url = "https://dl.pstmn.io/download/version/${version}/linux64";
-    sha256 = "sha256:0k8np71p414407hvcw149gspvdgyadnmpvfdxwwkr3pydj70vn6f";
+    sha256 = "sha256:0fiqljn8mbawgcmk68m386cns5n5v699qdbhy3dp9spdyx7rbms7";
     name = "${pname}.tar.gz";
   };
 
