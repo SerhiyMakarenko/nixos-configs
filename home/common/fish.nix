@@ -36,7 +36,7 @@
         echo -----------------------------------------------------------------
         who -aH
         echo -----------------------------------------------------------------
-    end
+      end
     end
     function prompt_segment -d "Function to draw a segment"
       set -l bg

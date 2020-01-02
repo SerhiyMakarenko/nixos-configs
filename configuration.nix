@@ -44,6 +44,7 @@ in
       _8-bit-backgrounds = import ./pkgs/8-bit-backgrounds/default.nix;
       gestures = import ./pkgs/gestures/default.nix;
       libinput-gestures = import ./pkgs/libinput-gestures/default.nix;
+      organize = import ./pkgs/organize/default.nix;
       # python3WithPkgs = import ./pkgs/python3/default.nix;
       postman = import ./pkgs/postman/default.nix;
     };
@@ -85,21 +86,24 @@ in
       libinput
       libinput-gestures
       lightdm_gtk_greeter
+      organize
       papirus-icon-theme
       pciutils
       plymouth
       postman
       # python3WithPkgs
-      skypeforlinux
-      slack-dark
       spotify
       sublime-merge
       tmux
+      tootle
       unstable._1password
       unstable.adapta-gtk-theme
       unstable.jetbrains.pycharm-community
+      unstable.skypeforlinux
+      unstable.slack-dark
       unstable.sublime3
       unstable.tdesktop
+      unstable.terraform
       vim
       wmctrl
       xdotool
