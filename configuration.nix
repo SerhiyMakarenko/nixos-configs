@@ -44,8 +44,9 @@ in
       _8-bit-backgrounds = import ./pkgs/8-bit-backgrounds/default.nix;
       gestures = import ./pkgs/gestures/default.nix;
       libinput-gestures = import ./pkgs/libinput-gestures/default.nix;
+      mactelnet-client = import ./pkgs/mactelnet-client/default.nix;
       organize = import ./pkgs/organize/default.nix;
-      # python3WithPkgs = import ./pkgs/python3/default.nix;
+      python3WithPkgs = import ./pkgs/python3/default.nix;
       postman = import ./pkgs/postman/default.nix;
     };
   };
@@ -64,6 +65,7 @@ in
       _8-bit-backgrounds
       adapta-backgrounds
       bookworm
+      expect
       feedreader
       fish
       fondo
@@ -86,12 +88,13 @@ in
       libinput
       libinput-gestures
       lightdm_gtk_greeter
+      mactelnet-client
       organize
       papirus-icon-theme
       pciutils
       plymouth
       postman
-      # python3WithPkgs
+      python3WithPkgs
       spotify
       sublime-merge
       tmux
@@ -131,8 +134,11 @@ in
   networking = {
     networkmanager = {
       enable = true;
-     };
+    };
     hostName = "hp-elitebook-840-5g-serhiya-makarenka";
+    firewall = {
+      enable = false;
+    };
   };
 
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];

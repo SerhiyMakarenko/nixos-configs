@@ -79,7 +79,7 @@
     "gitlab.makarenko.home" = {
       hostname = "gitlab.makarenko.home";
       user = "git";
-      identityFile = "~/.ssh/rsa/SM.Gitlub.rsa";
+      identityFile = "~/.ssh/rsa/SM.Gitlab.rsa";
     };
   };
 }
