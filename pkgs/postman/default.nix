@@ -2,7 +2,7 @@ with import <nixpkgs> { config.allowUnfree = true; };
 
 stdenv.mkDerivation rec {
   pname = "postman";
-  version = "7.13.0";
+  version = "7.23.0";
 
   src = fetchurl {
     url = "https://dl.pstmn.io/download/version/${version}/linux64";

@@ -16,14 +16,13 @@ in
       efi.canTouchEfiVariables = true;
     };
 
-    initrd.luks.devices = [
-      {
-        name = "root";
-        device = "/dev/disk/by-uuid/418196a6-1165-439e-aed7-ef6f6057af42";
-        preLVM = true;
-        allowDiscards = true;
-      }
-    ];
+    initrd.luks.devices = {
+        root = {
+          device = "/dev/disk/by-uuid/418196a6-1165-439e-aed7-ef6f6057af42";
+          preLVM = true;
+          allowDiscards = true;
+        };
+      };
 
     plymouth = {
       enable = true;
@@ -75,13 +74,13 @@ in
       gnome3.dconf-editor
       gnome3.gnome-tweaks
       gnomeExtensions.clipboard-indicator
-      gnomeExtensions.mediaplayer
       gnomeExtensions.sound-output-device-chooser
       gnomeExtensions.taskwhisperer
       google-chrome
       gthumb
       home-manager
       htop
+      jetbrains.pycharm-community
       jq
       kubectl
       kubernetes-helm
@@ -101,7 +100,6 @@ in
       tootle
       unstable._1password
       unstable.adapta-gtk-theme
-      unstable.jetbrains.pycharm-community
       unstable.skypeforlinux
       unstable.slack-dark
       unstable.sublime3
@@ -185,6 +183,7 @@ in
       };
         
       displayManager = {
+        defaultSession = "gnome";
         lightdm = {
           enable = true;
           background = "${pkgs._8-bit-backgrounds}/share/backgrounds/8-bit/what-space-really-looks-like.jpg";
@@ -204,7 +203,6 @@ in
         gnome3 = {
           enable = true;
         };
-        default = "none";
       };
     };
   };
@@ -254,5 +252,5 @@ in
     '';
   };
 
-  system.stateVersion = "19.09";
+  system.stateVersion = "20.03";
 }
