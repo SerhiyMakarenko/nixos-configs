@@ -67,6 +67,7 @@ in
       _8-bit-backgrounds
       adapta-backgrounds
       bookworm
+      blueman
       expect
       feedreader
       fish
@@ -148,7 +149,10 @@ in
   time.timeZone = "Europe/Kiev";
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   environment = {
     variables.EDITOR = "vim";
