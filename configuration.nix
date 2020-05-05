@@ -49,6 +49,9 @@ in
       postman = import ./pkgs/postman/default.nix;
     };
   };
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
   
   programs = {
     fish = {
@@ -92,18 +95,19 @@ in
       papirus-icon-theme
       pciutils
       plymouth
+      pop-gtk-theme
       postman
       python3WithPkgs
       spotify
       sublime-merge
       tmux
-      tootle
       unstable._1password
-      unstable.adapta-gtk-theme
       unstable.skypeforlinux
       unstable.slack-dark
+      unstable.azure-cli
       unstable.sublime3
       unstable.tdesktop
+      unstable.teams
       unstable.terraform
       vim
       wmctrl
@@ -190,8 +194,8 @@ in
           greeters.gtk.enable = true;
           greeters.gtk.iconTheme.package = "${pkgs.papirus-icon-theme}";
           greeters.gtk.iconTheme.name = "Papirus-Dark";
-          greeters.gtk.theme.package = "${pkgs.unstable.adapta-gtk-theme}";
-          greeters.gtk.theme.name = "Adapta-Nokto-Eta";
+          greeters.gtk.theme.package = "${pkgs.pop-gtk-theme}";
+          greeters.gtk.theme.name = "Pop-dark";
           greeters.gtk.indicators = [ "~clock" "~spacer" "~session" "~power" ];
         };
       };
