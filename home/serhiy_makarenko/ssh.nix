@@ -81,5 +81,10 @@
       user = "git";
       identityFile = "~/.ssh/rsa/SM.Gitlab.rsa";
     };
+    "ssh.dev.azure.com" = {
+      hostname = "ssh.dev.azure.com";
+      user = "git";
+      identityFile = "~/.ssh/rsa/SM.Azure.rsa";
+    };
   };
 }

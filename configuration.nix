@@ -50,12 +50,24 @@ in
     };
   };
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation = {
+    virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
+    };
+    docker = {
+      enable = true;
+    };
+  };
   
   programs = {
     fish = {
       enable = true;
+    };
+    geary = {
+      enable = false;
     };
   };
 
@@ -71,7 +83,6 @@ in
       expect
       feedreader
       fish
-      fondo
       gestures
       git
       gnome3.dconf
@@ -117,7 +128,6 @@ in
     gnome3.excludePackages = [
       pkgs.gnome3.cheese
       pkgs.gnome3.epiphany
-      pkgs.gnome3.geary
       pkgs.gnome3.gnome-maps
       pkgs.gnome3.gnome-music
       pkgs.gnome3.gnome-software
@@ -165,20 +175,20 @@ in
       permitRootLogin = "yes";
     };
 
-    kubernetes = {
-      easyCerts = true;
-      kubelet.extraOpts = "--fail-swap-on=false";
-      masterAddress = "hp-elitebook-840-5g-serhiya-makarenka";
-      roles = [ "master" "node" ];
-      # addons = {
-      #   dashboard = {
-      #     enable = true;
-      #     extraArgs = [
-      #       "--enable-skip-login"
-      #     ];
-      #   };
-      # };
-    };
+    # kubernetes = {
+    #   easyCerts = true;
+    #   kubelet.extraOpts = "--fail-swap-on=false";
+    #   masterAddress = "hp-elitebook-840-5g-serhiya-makarenka";
+    #   roles = [ "master" "node" ];
+    #   addons = {
+    #     dashboard = {
+    #       enable = true;
+    #       extraArgs = [
+    #         "--enable-skip-login"
+    #       ];
+    #     };
+    #   };
+    # };
 
     xserver = {
       enable = true;
@@ -223,6 +233,7 @@ in
         extraGroups = [
           "wheel"
           "input"
+          "docker"
         ];
         shell = pkgs.fish;
       };
