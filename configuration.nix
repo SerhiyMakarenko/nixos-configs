@@ -12,17 +12,25 @@ in
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      systemd-boot = {
+        enable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
     };
 
-    initrd.luks.devices = {
-        root = {
-          device = "/dev/disk/by-uuid/418196a6-1165-439e-aed7-ef6f6057af42";
-          preLVM = true;
-          allowDiscards = true;
+    initrd = {
+      luks = {
+        devices = {
+          root = {
+            device = "/dev/disk/by-uuid/418196a6-1165-439e-aed7-ef6f6057af42";
+            preLVM = true;
+            allowDiscards = true;
+          };
         };
       };
+    };
 
     plymouth = {
       enable = true;
@@ -33,20 +41,22 @@ in
     };
   };
   
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowBroken = true;
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+      packageOverrides = pkgs: {
+        unstable = import unstableTarball {
+          config = config.nixpkgs.config;
+        };
+        _8-bit-backgrounds = import ./pkgs/8-bit-backgrounds/default.nix;
+        gestures = import ./pkgs/gestures/default.nix;
+        libinput-gestures = import ./pkgs/libinput-gestures/default.nix;
+        mactelnet-client = import ./pkgs/mactelnet-client/default.nix;
+        organize = import ./pkgs/organize/default.nix;
+        python3WithPkgs = import ./pkgs/python3/default.nix;
+        postman = import ./pkgs/postman/default.nix;
       };
-      _8-bit-backgrounds = import ./pkgs/8-bit-backgrounds/default.nix;
-      gestures = import ./pkgs/gestures/default.nix;
-      libinput-gestures = import ./pkgs/libinput-gestures/default.nix;
-      mactelnet-client = import ./pkgs/mactelnet-client/default.nix;
-      organize = import ./pkgs/organize/default.nix;
-      python3WithPkgs = import ./pkgs/python3/default.nix;
-      postman = import ./pkgs/postman/default.nix;
     };
   };
 
@@ -125,24 +135,28 @@ in
       wmctrl
       xdotool
     ];
-    gnome3.excludePackages = [
-      pkgs.gnome3.cheese
-      pkgs.gnome3.epiphany
-      pkgs.gnome3.gnome-maps
-      pkgs.gnome3.gnome-music
-      pkgs.gnome3.gnome-software
-      pkgs.gnome3.simple-scan
-    ];
+    gnome3 = {
+      excludePackages = [
+        pkgs.gnome3.cheese
+        pkgs.gnome3.epiphany
+        pkgs.gnome3.gnome-maps
+        pkgs.gnome3.gnome-music
+        pkgs.gnome3.gnome-software
+        pkgs.gnome3.simple-scan
+      ];
+    };
   };
 
-  fonts.fonts = with pkgs; [
-    corefonts
-    font-awesome
-    material-design-icons
-    overpass
-    roboto
-    roboto-mono
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      corefonts
+      font-awesome
+      material-design-icons
+      overpass
+      roboto
+      roboto-mono
+    ];
+  };
 
   networking = {
     networkmanager = {
@@ -154,14 +168,30 @@ in
     };
   };
 
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+  fileSystems = {
+    "/" = {
+      options = [ "noatime" "nodiratime" "discard" ];
+    };
+  };
 
-  time.timeZone = "Europe/Kiev";
+  time = {
+    timeZone = "Europe/Kiev";
+  };
 
-  sound.enable = true;
-  hardware.pulseaudio = {
+  sound = {
     enable = true;
-    package = pkgs.pulseaudioFull;
+  };
+
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+    };
+    cpu = {
+      intel = {
+        updateMicrocode = true;
+      };
+    };
   };
 
   environment = {
@@ -173,6 +203,10 @@ in
     openssh = {
       enable = true;
       permitRootLogin = "yes";
+    };
+
+    fstrim = {
+      enable = true;
     };
 
     # kubernetes = {
@@ -243,33 +277,37 @@ in
     };
   };
 
-  security.sudo = {
-    enable = true;
-    # Waiting till this will be fixed https://github.com/NixOS/nixpkgs/issues/58276
-    # extraRules = [
-    #   { runAs = "root";
-    #     users = [ "serhiy_makarenko" ];
-    #     commands = [
-    #       { command = "${pkgs.systemd}/bin/systemctl"; options = [ "NOPASSWD" ]; }
-    #       { command = "${pkgs.systemd}/bin/poweroff"; options = [ "NOPASSWD" ]; }
-    #       { command = "${pkgs.systemd}/bin/reboot"; options = [ "NOPASSWD" ]; }
-    #       { command = "${pkgs.unstable.sublime3}/bin/subl"; options = [ "NOPASSWD" ]; }
-    #       { command = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild"; options = [ "NOPASSWD" ]; }
-    #       { command = "${config.nix.package.out}/bin/nix-collect-garbage"; options = [ "NOPASSWD" ]; }
-    #       { command = "${config.nix.package.out}/bin/nix-env"; options = [ "NOPASSWD" ]; }
-    #     ];
-    #   }
-    # ];
-    extraConfig = ''
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.systemd}/bin/systemctl
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.systemd}/bin/poweroff
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.systemd}/bin/reboot
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.unstable.sublime3}/bin/subl
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${config.system.build.nixos-rebuild}/bin/nixos-rebuild
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${config.nix.package.out}/bin/nix-collect-garbage
-      serhiy_makarenko        ALL=(root) NOPASSWD: ${config.nix.package.out}/bin/nix-env
-    '';
+  security = {
+    sudo = {
+      enable = true;
+      # Waiting till this will be fixed https://github.com/NixOS/nixpkgs/issues/58276
+      # extraRules = [
+      #   { runAs = "root";
+      #     users = [ "serhiy_makarenko" ];
+      #     commands = [
+      #       { command = "${pkgs.systemd}/bin/systemctl"; options = [ "NOPASSWD" ]; }
+      #       { command = "${pkgs.systemd}/bin/poweroff"; options = [ "NOPASSWD" ]; }
+      #       { command = "${pkgs.systemd}/bin/reboot"; options = [ "NOPASSWD" ]; }
+      #       { command = "${pkgs.unstable.sublime3}/bin/subl"; options = [ "NOPASSWD" ]; }
+      #       { command = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild"; options = [ "NOPASSWD" ]; }
+      #       { command = "${config.nix.package.out}/bin/nix-collect-garbage"; options = [ "NOPASSWD" ]; }
+      #       { command = "${config.nix.package.out}/bin/nix-env"; options = [ "NOPASSWD" ]; }
+      #     ];
+      #   }
+      # ];
+      extraConfig = ''
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.systemd}/bin/systemctl
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.systemd}/bin/poweroff
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.systemd}/bin/reboot
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${pkgs.unstable.sublime3}/bin/subl
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${config.system.build.nixos-rebuild}/bin/nixos-rebuild
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${config.nix.package.out}/bin/nix-collect-garbage
+        serhiy_makarenko        ALL=(root) NOPASSWD: ${config.nix.package.out}/bin/nix-env
+      '';
+    };
   };
 
-  system.stateVersion = "20.03";
+  system = {
+    stateVersion = "20.03";
+  };
 }
