@@ -100,6 +100,8 @@ in
       gnome3.gnome-tweaks
       gnomeExtensions.clipboard-indicator
       gnomeExtensions.sound-output-device-chooser
+      gnomeExtensions.system-monitor
+      gnomeExtensions.night-theme-switcher
       gnomeExtensions.taskwhisperer
       google-chrome
       gthumb
@@ -118,16 +120,18 @@ in
       pciutils
       plymouth
       pop-gtk-theme
+      postgresql
       postman
       python3WithPkgs
       spotify
       sublime-merge
       tmux
       unstable._1password
+      unstable.azure-cli
       unstable.skypeforlinux
       unstable.slack-dark
-      unstable.azure-cli
       unstable.sublime3
+      unstable.docker-compose
       unstable.tdesktop
       unstable.teams
       unstable.terraform
@@ -203,6 +207,11 @@ in
     openssh = {
       enable = true;
       permitRootLogin = "yes";
+    };
+
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplipWithPlugin ];
     };
 
     fstrim = {

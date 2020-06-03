@@ -1,5 +1,5 @@
 with import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz) {};
-with python37Packages;
+with python38Packages;
 
 buildPythonPackage rec {
   version = "1.7.0";
@@ -20,7 +20,6 @@ buildPythonPackage rec {
     docopt
     exifread
     pathlib2
-    typing
   ];
 
   meta = with stdenv.lib; {

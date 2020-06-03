@@ -86,5 +86,10 @@
       user = "git";
       identityFile = "~/.ssh/rsa/SM.Azure.rsa";
     };
+    "paraview.eastus.cloudapp.azure.com" = {
+      hostname = "paraview.eastus.cloudapp.azure.com";
+      user = "serhiy_makarenko";
+      identityFile = "~/.ssh/rsa/SM.Azure.rsa";
+    };
   };
 }
