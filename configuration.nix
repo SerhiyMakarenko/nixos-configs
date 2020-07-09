@@ -123,6 +123,8 @@ in
       postgresql
       postman
       python3WithPkgs
+      sops
+      shutter
       spotify
       sublime-merge
       tmux
