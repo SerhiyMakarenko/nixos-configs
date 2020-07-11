@@ -107,7 +107,6 @@ in
       gthumb
       home-manager
       htop
-      jetbrains.pycharm-community
       jq
       kubectl
       kubernetes-helm
@@ -137,6 +136,7 @@ in
       unstable.tdesktop
       unstable.teams
       unstable.terraform
+      unstable.jetbrains.pycharm-community
       vim
       wmctrl
       xdotool
