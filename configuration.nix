@@ -121,6 +121,7 @@ in
       pop-gtk-theme
       postgresql
       postman
+      p7zip
       python3WithPkgs
       sops
       shutter

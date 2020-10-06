@@ -86,10 +86,24 @@
       user = "git";
       identityFile = "~/.ssh/rsa/SM.Azure.rsa";
     };
-    "paraview.eastus.cloudapp.azure.com" = {
-      hostname = "paraview.eastus.cloudapp.azure.com";
+    "windows-guest.virtualbox.local" = {
+      hostname = "127.0.0.1";
       user = "serhiy_makarenko";
+      port = 2233;
       identityFile = "~/.ssh/rsa/SM.Azure.rsa";
     };
+    "sk-hynix.master.server" = {
+      hostname = "218.55.253.99";
+      user = "smakarenko";
+      port = 7866;
+      identityFile = "~/.ssh/rsa/SM.Azure.rsa";
+      localForwards = [
+        {
+          bind.port = 63473;
+          host.address = "192.168.220.1";
+          host.port = 80;
+        }
+      ];
+	};
   };
 }
