@@ -2,11 +2,11 @@ with import <nixpkgs> { config.allowUnfree = true; };
 
 stdenv.mkDerivation rec {
   pname = "postman";
-  version = "7.24.0";
+  version = "7.34.0";
 
   src = fetchurl {
     url = "https://dl.pstmn.io/download/version/${version}/linux64";
-    sha256 = "sha256:0wriyj58icgljmghghyxi1mnjr1vh5jyp8lzwcf6lcsdvsh0ccmw";
+    sha256 = "sha256:13d3wc49wp8rh8kxrn1krsyh24g5m6wl0mfhvbjylv0q6kp5jlan";
     name = "${pname}.tar.gz";
   };
 
@@ -24,23 +24,25 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = [
-    alsaLib
+    stdenv.cc.cc.lib
     atk
     at-spi2-atk
+    at-spi2-core
+    alsaLib
     cairo
     cups
     dbus
     expat
-    fontconfig
-    freetype
     gdk-pixbuf
     glib
     gtk3
-    nspr
+    freetype
+    fontconfig
     nss
+    nspr
     pango
-    stdenv.cc.cc.lib
     udev
+    libuuid
     xlibs.libX11
     xlibs.libxcb
     xlibs.libXcomposite

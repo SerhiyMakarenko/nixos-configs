@@ -26,13 +26,18 @@
       user = "serhiy_makarenko";
       identityFile = "~/.ssh/rsa/SM.Home.rsa";
     };
-    "rpi0.makarenko.home" = {
-      hostname = "rpi0.makarenko.home";
+    "rpi1.makarenko.home" = {
+      hostname = "rpi1.makarenko.home";
       user = "serhiy_makarenko";
       identityFile = "~/.ssh/rsa/SM.Home.rsa";
     };
-    "rpi1.makarenko.home" = {
-      hostname = "rpi1.makarenko.home";
+    "rpi2.makarenko.home" = {
+      hostname = "rpi2.makarenko.home";
+      user = "serhiy_makarenko";
+      identityFile = "~/.ssh/rsa/SM.Home.rsa";
+    };
+    "rpi3.makarenko.home" = {
+      hostname = "rpi3.makarenko.home";
       user = "serhiy_makarenko";
       identityFile = "~/.ssh/rsa/SM.Home.rsa";
     };
@@ -46,11 +51,6 @@
       user = "serhiy_makarenko";
       identityFile = "~/.ssh/rsa/SM.Home.rsa";
     };
-    "gw2.makarenko.me" = {
-      hostname = "srv2.makarenko.me";
-      user = "serhiy_makarenko";
-      identityFile = "~/.ssh/rsa/SM.Home.rsa";
-    };
     "sw1.makarenko.home" = {
       hostname = "sw1.makarenko.home";
       user = "serhiy_makarenko";
@@ -58,6 +58,21 @@
     };
     "sw2.makarenko.home" = {
       hostname = "sw2.makarenko.home";
+      user = "serhiy_makarenko";
+      identityFile = "~/.ssh/rsa/SM.Home.rsa";
+    };
+    "cap1.makarenko.home" = {
+      hostname = "cap1.makarenko.home";
+      user = "serhiy_makarenko";
+      identityFile = "~/.ssh/rsa/SM.Home.rsa";
+    };
+    "cap2.makarenko.home" = {
+      hostname = "cap2.makarenko.home";
+      user = "serhiy_makarenko";
+      identityFile = "~/.ssh/rsa/SM.Home.rsa";
+    };
+    "cap3.makarenko.home" = {
+      hostname = "cap3.makarenko.home";
       user = "serhiy_makarenko";
       identityFile = "~/.ssh/rsa/SM.Home.rsa";
     };
@@ -92,7 +107,7 @@
       port = 2233;
       identityFile = "~/.ssh/rsa/SM.Azure.rsa";
     };
-    "sk-hynix.master.server" = {
+    "sk-hynix.k8s.server" = {
       hostname = "218.55.253.99";
       user = "smakarenko";
       port = 7866;
@@ -104,6 +119,17 @@
           host.port = 80;
         }
       ];
+      dynamicForwards = [
+        {
+          port = 44444;
+        }
+      ];
+	};
+	"sk-hynix.nas.server" = {
+      hostname = "218.55.253.99";
+      user = "smakarenko";
+      port = 7867;
+      identityFile = "~/.ssh/rsa/SM.Azure.rsa";
 	};
   };
 }

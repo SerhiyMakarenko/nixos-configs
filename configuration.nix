@@ -56,6 +56,7 @@ in
         organize = import ./pkgs/organize/default.nix;
         python3WithPkgs = import ./pkgs/python3/default.nix;
         postman = import ./pkgs/postman/default.nix;
+        tidal-desktop = import ./pkgs/tidal-desktop/default.nix;
       };
     };
   };
@@ -89,6 +90,7 @@ in
       _8-bit-backgrounds
       adapta-backgrounds
       bookworm
+      binutils
       blueman
       expect
       feedreader
@@ -127,6 +129,7 @@ in
       shutter
       spotify
       sublime-merge
+      tidal-desktop
       tmux
       unstable._1password
       unstable.azure-cli
@@ -139,6 +142,7 @@ in
       unstable.terraform
       unstable.jetbrains.pycharm-community
       vim
+      file
       wmctrl
       xdotool
     ];
@@ -320,6 +324,6 @@ in
   };
 
   system = {
-    stateVersion = "20.03";
+    stateVersion = "20.09";
   };
 }
