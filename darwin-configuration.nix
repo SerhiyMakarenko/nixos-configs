@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
-
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 {
   imports = [
     <home-manager/nix-darwin>
@@ -13,13 +17,25 @@
 
   system.defaults.screencapture.location = "~/Downloads";
 
-  environment.systemPackages =
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        unstable = import unstableTarball {
+          config = config.nixpkgs.config;
+        };
+      };
+    };
+  };
+
+  environment.systemPackages = with pkgs;
     [
-      pkgs.aws-vault
-      pkgs.awscli
-      pkgs.htop
-      pkgs.tmux
-      pkgs.jq
+      _1password
+      aws-vault
+      awscli
+      htop
+      tmux
+      jq
     ];
 
   services.nix-daemon.enable = true;
