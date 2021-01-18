@@ -2,11 +2,11 @@ with import <nixpkgs> {};
 
 stdenv.mkDerivation rec {
   name = "tidal-hifi";
-  version = "1.2.0";
+  version = "1.3.0";
 
   src = fetchurl {
     url = "https://github.com/Mastermindzh/${name}/releases/download/${version}/${name}_${version}_amd64.deb";
-    sha256 = "1pfv3x0yllayxvnm6g0k5pl55i9wp8j04mp7fhcw3r3qi3cyw7sw";
+    sha256 = "075h9a6qxbp84a0a8pmjjyqwa9vvb58g4i7lm8ai4sir887qww32";
   };
 
   buildInputs = [

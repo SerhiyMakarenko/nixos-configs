@@ -57,6 +57,7 @@ in
         python3WithPkgs = import ./pkgs/python3/default.nix;
         postman = import ./pkgs/postman/default.nix;
         tidal-desktop = import ./pkgs/tidal-desktop/default.nix;
+        tableplus = import ./pkgs/tableplus/default.nix;
       };
     };
   };
@@ -92,6 +93,9 @@ in
       bookworm
       binutils
       blueman
+      cantata
+      cawbird
+      discord
       expect
       feedreader
       fish
@@ -116,6 +120,7 @@ in
       libinput-gestures
       lightdm_gtk_greeter
       mactelnet-client
+      mpd
       organize
       papirus-icon-theme
       pciutils
@@ -129,6 +134,7 @@ in
       shutter
       spotify
       sublime-merge
+      tableplus
       tidal-desktop
       tmux
       unstable._1password
@@ -141,6 +147,7 @@ in
       unstable.teams
       unstable.terraform
       unstable.jetbrains.pycharm-community
+      usbutils
       vim
       file
       wmctrl
