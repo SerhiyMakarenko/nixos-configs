@@ -95,6 +95,7 @@ in
       blueman
       cantata
       cawbird
+      dbeaver
       discord
       expect
       feedreader
@@ -105,6 +106,7 @@ in
       gnome3.dconf-editor
       gnome3.gnome-tweaks
       gnomeExtensions.clipboard-indicator
+      gnomeExtensions.gsconnect
       gnomeExtensions.sound-output-device-chooser
       gnomeExtensions.system-monitor
       gnomeExtensions.night-theme-switcher
@@ -136,6 +138,7 @@ in
       sublime-merge
       tableplus
       tidal-desktop
+      teamviewer
       tmux
       unstable._1password
       unstable.azure-cli
@@ -221,6 +224,10 @@ in
     openssh = {
       enable = true;
       permitRootLogin = "yes";
+    };
+
+    teamviewer = {
+      enable = true;
     };
 
     printing = {
