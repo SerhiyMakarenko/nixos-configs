@@ -122,6 +122,7 @@ in
       libinput-gestures
       lightdm_gtk_greeter
       mactelnet-client
+      meld
       mpd
       organize
       papirus-icon-theme
