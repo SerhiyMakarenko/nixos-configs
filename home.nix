@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./scripts/default.nix
     ./dotfiles/default.nix
   ];
 
@@ -15,22 +14,26 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      packageOverrides = pkgs: {
+        fish-foreign-env = pkgs.fishPlugins.foreign-env;
+      };
     };
   };
 
   home = {
-    username = "serhiy_makarenko";
-    homeDirectory = "/home/serhiy_makarenko";
+    username = "smakarenko";
+    homeDirectory = "/home/smakarenko";
 
     packages = with pkgs; [
+      ansible
       azure-cli
-      borgbackup
       kubernetes-helm
       kubectl
       sops
       htop
       tmux
       jq
+      vagrant
     ];
   };
 
@@ -40,5 +43,5 @@
   	};
   };
 
-  home.stateVersion = "21.05";
+  home.stateVersion = "20.09";
 }
